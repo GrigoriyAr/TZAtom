@@ -5,4 +5,4 @@ with sq.connect('orders.db') as con:
     code INTEGER,
     name TEXT,
     moment DATETIME
-""")
+)""")
