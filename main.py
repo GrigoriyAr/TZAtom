@@ -1,8 +1,12 @@
-import sqlite3 as sq
-with sq.connect('orders.db') as con:
-    cur = con.cursor() # курсор позволяет делать скл запросы к базе
-    cur.execute("""CREATE TABLE inbox(
-    code INTEGER,
-    name TEXT,
-    moment DATETIME
-)""")
+
+
+import sqlite3
+
+def create_db():
+    with sqlite3.connect("orders.db") as conn:
+        cur = conn.cursor()
+        cur.execute("""CREATE TABLE IF NOT EXISTS inbox (
+        code INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT,
+        moment DATETIME
+        )""")
