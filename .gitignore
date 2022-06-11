@@ -1,3 +1,11 @@
+.venv
+
+*.pyc
+*.pyo
+
+**/__pycache__/
+
+sqlite.db
+
 data/
-sqlite.db/
-venv/
+.idea
