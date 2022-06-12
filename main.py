@@ -68,7 +68,7 @@ def get_frames(code: int):
 
 
 @app.delete("/frames/{code}")
-def get_frames(code: int):
+def delete_frames(code: int):
     with sqlite3.connect("sqlite.db", check_same_thread=False) as conn:
         cur = conn.cursor()
         cur.execute("""SELECT * FROM inbox WHERE code=?""", (code,))
