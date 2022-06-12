@@ -36,7 +36,19 @@ async def create_upload_files(files: list[UploadFile]):
     return {n:v for n,v in zip(rows, saved_files)}
 
 
-@app.get("/frames/")
+@app.get("/frames/{code}")
+def get_frames(code: int):
+    with sqlite3.connect("sqlite.db", check_same_thread=False) as conn:
+        cur = conn.cursor()
+        cur.execute("""SELECT * FROM inbox WHERE code=?""", (code,))
+        rows = cur.fetchone()
+        if not rows:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Нет такой картинки")
+        code, name, moment = rows
+        return {"momet": moment, "name": name}
+
+
+
 
 
 @app.on_event("startup")
